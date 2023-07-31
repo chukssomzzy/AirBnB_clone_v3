@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 """ holds class User"""
-import models
-from models.base_model import BaseModel, Base
+from hashlib import md5
+
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from hashlib import md5
+
+import models
+from models.base_model import Base, BaseModel
 
 m_d5 = md5()
 
