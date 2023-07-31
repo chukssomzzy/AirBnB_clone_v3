@@ -2,10 +2,11 @@
 """ holds class User"""
 import models
 from models.base_model import BaseModel, Base
-from os import getenv
-import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+from hashlib import md5
+
+m_d5 = md5()
 
 
 class User(BaseModel, Base):
@@ -26,4 +27,7 @@ class User(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         """initializes user"""
+        if "password" in kwargs:
+            m_d5.update(kwargs["password"])
+            kwargs["password"] = m_d5.digest()
         super().__init__(*args, **kwargs)
