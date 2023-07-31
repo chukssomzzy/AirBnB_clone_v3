@@ -56,9 +56,9 @@ def post_place_amenity(place_id, amenity_id):
     if not amenity:
         abort(404)
     if storage_t == 'db' and amenity in place.amenities:
-        return make_response(jsonify(amenity), 200)
+        return make_response(jsonify(amenity.to_dict()), 200)
     elif storage_t == 'db' and amenity.id in place.amenity_ids:
-        return make_response(jsonify(amenity), 200)
+        return make_response(jsonify(amenity.to_dict()), 200)
     if storage_t == 'db':
         place.amenities.append(amenity)
     else:
