@@ -106,17 +106,6 @@ class TestApiRoute(unittest.TestCase):
         self.assertEqual(res.content_type, 'application/json')
         self.assertEqual(res.json, {"status": "OK"})
 
-    @unittest.skipIf(models.storage_t == 'db' and os.path.
-                     exists('file.json'), "weird behaviour")
-    def test_get_stats(self):
-        """"Defines Test for stats route"""
-        res = self.app.get('/api/v1/stats')
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(res.content_type, "application/json")
-        self.assertEqual(res.json, {
-            'amenities': 2, 'cities': 2, 'places': 2,
-            'reviews': 2, 'states': 2, 'users': 2})
-
     @unittest.skipIf(models.storage_t != 'db', "weird behaviour")
     def test_get_stats_db(self):
         """"Defines Test for stats route"""

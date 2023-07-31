@@ -68,7 +68,7 @@ class BaseModel:
         if '_password' in new_dict:
             new_dict['password'] = new_dict['_password']
         new_dict["__class__"] = self.__class__.__name__
-        if not save_to_fs:
+        if not save_to_fs and "password" in new_dict:
             del new_dict["password"]
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
