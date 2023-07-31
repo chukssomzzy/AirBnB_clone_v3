@@ -1,6 +1,6 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
-This script creates a new view for State objects that handles all default RESTFul API actions:
+This script creates a new view for State objects that handles all default RESTful API actions:
 
 In the file api/v1/views/states.py
 You must use to_dict() to retrieve an object into a valid JSON
@@ -14,7 +14,7 @@ from api.v1.views import app_views
 
 @app_views.route('/states', methods=['GET', 'POST'], strict_slashes=False)
 def get_states():
-    """retrieve the list of all states or post new one"""
+    """retrieve the list of all states or post a new one"""
     if request.method == 'GET':
         states = storage.all(State)
         state_list = [state.to_dict() for state in states.values()]
@@ -32,7 +32,7 @@ def get_states():
 
 @app_views.route('/states/<string:state_id>', methods=['GET', 'PUT', 'DELETE'], strict_slashes=False)
 def alt_states(state_id):
-    """alter the values of state"""
+    """alter the values of the state"""
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
