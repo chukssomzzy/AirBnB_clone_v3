@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 This script creates a new view for State objects that handles all default RESTFul API actions:
 
