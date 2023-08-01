@@ -107,5 +107,4 @@ def search_places():
             if not all(storage.get('Amenity', id) in place.amenities for id in
                        json_key['amenities']):
                 places.remove(place)
-    print([place.to_dict() for place in places])
     return jsonify([place.to_dict() for place in places])
