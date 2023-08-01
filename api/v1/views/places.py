@@ -76,7 +76,7 @@ def update_place(place_id):
     return make_response(jsonify(place.to_dict()), 200)
 
 
-@app_views.route("/places_search", strict_slashes=False)
+@app_views.route("/places_search", methods=['POST'], strict_slashes=False)
 def search_places():
     """search places with params from request.get_json"""
     json_key = request.get_json()
@@ -102,8 +102,10 @@ def search_places():
                     for place in city.places:
                         places.add(place)
     if json_key.get("amenities"):
-        for place in places:
+        places_copy = places.copy()
+        for place in places_copy:
             if not all(storage.get('Amenity', id) in place.amenities for id in
                        json_key['amenities']):
                 places.remove(place)
+    print([place.to_dict() for place in places])
     return jsonify([place.to_dict() for place in places])
