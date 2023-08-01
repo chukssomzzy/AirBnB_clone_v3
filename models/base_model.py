@@ -76,6 +76,8 @@ class BaseModel:
             del new_dict["reviews"]
         if "cities" in new_dict:
             del new_dict["cities"]
+        if "places" in new_dict:
+            del new_dict["places"]
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
         return new_dict
